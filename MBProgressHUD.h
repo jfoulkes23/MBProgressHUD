@@ -31,7 +31,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 @protocol MBProgressHUDDelegate;
-
+@protocol MBProgressHUDProgressRepresentable;
 
 typedef enum {
 	/** Progress is shown using an UIActivityIndicatorView. This is the default. */
@@ -422,11 +422,14 @@ typedef void (^MBProgressHUDCompletionBlock)();
 
 @end
 
+@protocol MBProgressHUDProgressRepresentable <NSObject>
+- (void)setProgress:(float)progress;
+@end
 
 /**
  * A progress view for showing definite progress by filling up a circle (pie chart).
  */
-@interface MBRoundProgressView : UIView 
+@interface MBRoundProgressView : UIView <MBProgressHUDProgressRepresentable>
 
 /**
  * Progress (0.0 to 1.0)
